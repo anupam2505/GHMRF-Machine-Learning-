@@ -3,7 +3,8 @@ clear;clc;close all;
 mex BoundMirrorExpand.cpp;
 mex BoundMirrorShrink.cpp;
 
-I=imread('aeroplane.jpg');
+I=imread('/Users/anupampanwar/Google Drive/Studies/FSL/Project/GHMRF-Machine-Learning-/Code/Pascal_Images/01.jpg');
+%I=imread('2SegmentsImage/aeroplane.jpg');
 Y=rgb2gray(I);
 Z = edge(Y,'canny',0.75);
 
