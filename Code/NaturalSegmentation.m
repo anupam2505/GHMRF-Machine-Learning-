@@ -10,7 +10,7 @@ Z = edge(Y,'canny',0.75);
 
 Y=double(Y);
 Y=gaussianBlur(Y,3);
-imwrite(uint8(Y),'blurred image.png');
+%imwrite(uint8(Y),'blurred image.png');
 
 k=3;
 EM_iter=10; % max num of iterations
@@ -19,14 +19,13 @@ MAP_iter=10; % max num of iterations
 tic;
 fprintf('Performing k-means segmentation\n');
 [X, mu, sigma]=img_kmeans(Y,k);
-imwrite(uint8(X*120),'InitialAeroplaneLabels.png');
+%imwrite(uint8(X*120),'InitialAeroplaneLabels.png');
 
 [X, mu, sigma]=HMRF_EM(X,Y,Z,mu,sigma,k,EM_iter,MAP_iter);
 figure(2); imagesc(X); colormap(gray); 
 drawnow
-imwrite(uint8(X*120),'FinalAeroplanelabels.png');
+%imwrite(uint8(X*120),'FinalAeroplanelabels.png');
 toc;
-
 
 
 % used for getting the initial labels of image
@@ -41,5 +40,11 @@ for i=1:k
     m(i)=mean(yy);
     sig(i)=std(yy);
 end
+end
+
+% function performing Gaussian Blur
+function GI=gaussianBlur(I,s)
+h=fspecial('gaussian',ceil(s)*3+1,s);
+GI=imfilter(I,h,'replicate');
 end
 

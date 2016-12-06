@@ -52,14 +52,6 @@ for it=1:EM_iter
     end
 end
 
-
-% taking the length of the column (m) and returning the corresponding [i,j] matrix values
-% took around 30 mins
-% Completed on 20th Nov
-function [i j]=vec2mat(val,col)
-j=floor((val-1)/col)+1;
-i=mod(val-1,col)+1;
-
 figure;
 plot(1:it,sum_U(1:it),'LineWidth',2);
 hold on;
@@ -67,3 +59,12 @@ plot(1:it,sum_U(1:it),'.','MarkerSize',20);
 title('sum of U in each EM iteration');
 xlabel('EM iteration');
 ylabel('sum of U');
+end
+
+% taking the length of the column (m) and returning the corresponding [i,j] matrix values
+% took around 30 mins
+% Completed on 20th Nov
+function [i j]=vec2mat(val,col)
+j=floor((val-1)/col)+1;
+i=mod(val-1,col)+1;
+end

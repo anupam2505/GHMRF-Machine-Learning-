@@ -49,3 +49,10 @@ for i=1:k
     sig(i)=std(yy);
 end
 end
+
+% function performing the gaussian blur
+function GI=gaussianBlur(I,s)
+h=fspecial('gaussian',ceil(s)*3+1,s);
+
+GI=imfilter(I,h,'replicate');
+end
