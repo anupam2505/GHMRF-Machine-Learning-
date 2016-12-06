@@ -8,8 +8,8 @@ sigma = [1];
 p = [0.33,0.33,0.33];
 obj = gmdistribution(mu,sigma,p);
 
-Y = random(obj,256*256);
-Y = reshape(Y,256, 256);
+Y = random(obj,512*512);
+Y = reshape(Y,512, 512);
 
 imshow(Y);
 

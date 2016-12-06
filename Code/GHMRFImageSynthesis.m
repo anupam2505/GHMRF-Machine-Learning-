@@ -20,7 +20,7 @@ MAP_iter=3; % max num of iterations
 
 tic;
 fprintf('Performing k-means segmentation\n');
-[X, mu, sigma]=image_kmeans(Y,k);
+[X, mu, sigma]=img_kmeans(Y,k);
 imwrite(uint8(X*120),'initial labels.png');
 
 fprintf('Performing HMRF segmentation\n');
@@ -33,3 +33,19 @@ figure(2); imagesc(X); colormap(gray);
 drawnow
 imwrite(uint8(X*120),'final labels.png');
 toc;
+
+
+% returning the results of kmean along with mean and standard deviation
+% used for getting the initial labels of image
+function [out m sig]=img_kmeans(in,k)
+y=in(:);
+x=kmeans(y,k);
+out=reshape(x,size(in));
+m=zeros(k,1);
+sig=zeros(k,1);
+for i=1:k
+    yy=y(x==i);
+    m(i)=mean(yy);
+    sig(i)=std(yy);
+end
+end
